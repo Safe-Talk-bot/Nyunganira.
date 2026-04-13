@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nyunganira - Health & Wellness</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Login Screen -->
+    <div id="login-screen" style="display:none;">
+        <div class="login-container" id="login-form-container">
+            <button class="close-modal" onclick="closeLogin()">×</button>
+            <div class="lang-switcher-container">
+                <select class="lang-select" onchange="changeLanguage(this.value)" aria-label="Select Language">
+                    <option value="en">English</option>
+                    <option value="rw">Kinyarwanda</option>
+                    <option value="fr">Français</option>
+                </select>
+            </div>
+            <img src="./logo.png.jpg" alt="Nyunganira Logo" class="login-logo">
+            <h2 data-i18n="login_title">Welcome to Nyunganira</h2>
+            <p data-i18n="login_subtitle">Please log in to access the community.</p>
+            <form id="login-form">
+                <div class="form-group">
+                    <label for="username" data-i18n="label_username">Username:</label>
+                    <input type="text" id="username" name="username" required aria-required="true">
+                </div>
+                <div class="form-group">
+                    <label for="password" data-i18n="label_password">Password:</label>
+                    <input type="password" id="password" name="password" required aria-required="true">
+                </div>
+                <button type="submit" class="btn-primary" data-i18n="btn_login">Login</button>
+            </form>
+            <p class="disclaimer" data-i18n="disclaimer">Your identity is protected within the platform.</p>
+            <p class="auth-toggle"><a href="#" onclick="toggleAuthMode('signup')" data-i18n="auth_toggle_signup">Don't have an account? Sign up</a></p>
+        </div>
+
+        <!-- Signup Container -->
+        <div class="login-container" id="signup-form-container" style="display:none;">
+            <button class="close-modal" onclick="closeLogin()">×</button>
+            <div class="lang-switcher-container">
+                <select class="lang-select" onchange="changeLanguage(this.value)" aria-label="Select Language">
+                    <option value="en">English</option>
+                    <option value="rw">Kinyarwanda</option>
+                    <option value="fr">Français</option>
+                </select>
+            </div>
+            <img src="./logo.png.jpg" alt="Nyunganira Logo" class="login-logo">
+            <h2 data-i18n="signup_title">Create an Account</h2>
+            <p data-i18n="signup_subtitle">Join the community to share and learn.</p>
+            <form id="signup-form">
+                <div class="form-group">
+                    <label for="reg-username" data-i18n="label_username">Username:</label>
+                    <input type="text" id="reg-username" name="username" required aria-required="true">
+                </div>
+                <div class="form-group">
+                    <label for="reg-email" data-i18n="label_email">Email:</label>
+                    <input type="email" id="reg-email" name="email" required aria-required="true">
+                </div>
+                <div class="form-group">
+                    <label for="reg-password" data-i18n="label_password">Password:</label>
+                    <input type="password" id="reg-password" name="password" required aria-required="true">
+                </div>
+                <div class="form-group">
+                    <label data-i18n="label_select_avatar">Select Avatar:</label>
+                    <div class="avatar-options">
+                        <label>
+                            <input type="radio" name="avatar" value="https://img.icons8.com/color/96/dog.png" checked>
+                            <img src="https://img.icons8.com/color/96/dog.png" alt="Dog" class="avatar-choice">
+                        </label>
+                        <label>
+                            <input type="radio" name="avatar" value="https://img.icons8.com/color/96/cat.png">
+                            <img src="https://img.icons8.com/color/96/cat.png" alt="Cat" class="avatar-choice">
+                        </label>
+                        <label>
+                            <input type="radio" name="avatar" value="https://img.icons8.com/color/96/rabbit.png">
+                            <img src="https://img.icons8.com/color/96/rabbit.png" alt="Rabbit" class="avatar-choice">
+                        </label>
+                    </div>
+                </div>
+                <button type="submit" class="btn-primary" data-i18n="btn_signup">Sign Up</button>
+            </form>
+            <p class="disclaimer" data-i18n="disclaimer">Your identity is protected within the platform.</p>
+            <p class="auth-toggle"><a href="#" onclick="toggleAuthMode('login')" data-i18n="auth_toggle_login">Already have an account? Login</a></p>
+        </div>
+    </div>
+
+    <!-- Header Section -->
+    <header id="main-header">
+        <!-- Removed style="display:none;" to show header by default -->
+        <div class="header-container">
+            <div class="logo-wrapper" onclick="showPage('home')" onkeydown="handleLogoKeypress(event)" role="link" tabindex="0" aria-label="Go to Home">
+                <img src="./logo.png.jpg" alt="Nyunganira Logo" class="logo-img">
+                <h1 class="logo">NYUNGANIRA</h1>
+            </div>
+            <div class="nav-row">
+                <nav aria-label="Main Navigation">
+                    <ul class="nav-links">
+                        <li><button onclick="showPage('home')" data-i18n-label="nav_home" aria-label="Home"><img src="home.png" alt="" class="nav-icon"><span data-i18n="nav_home">Home</span></button></li>
+                        <li><button onclick="showPage('opinions')" data-i18n-label="nav_opinions" aria-label="Opinions"><img src="opinions.png" alt="" class="nav-icon"><span data-i18n="nav_opinions">Opinions</span></button></li>
+                        <li><button onclick="showPage('notifications')" data-i18n-label="nav_notifications" aria-label="Notifications"><img src="https://img.icons8.com/ios-glyphs/30/000000/bell.png" alt="" class="nav-icon"><span data-i18n="nav_notifications">Notifications</span></button></li>
+                        <li><button onclick="showPage('about')" data-i18n-label="nav_about" aria-label="About and Help"><img src="https://img.icons8.com/ios-glyphs/30/000000/info.png" alt="" class="nav-icon"><span data-i18n="nav_about">About</span></button></li>
+                        <li><button onclick="showPage('profile')" data-i18n-label="nav_profile" aria-label="Profile"><img src="profile.png" alt="" class="nav-icon"><span data-i18n="nav_profile">Profile</span></button></li>
+                    </ul>
+                </nav>
+                <div class="search-bar">
+                    <input type="text" id="header-search" data-i18n-placeholder="search_placeholder" placeholder="Search" aria-label="Search">
+                    <button type="button" data-i18n-label="btn_search" aria-label="Search">
+                        <img src="search.png" alt="" class="search-icon-img">
+                    </button>
+                </div>
+            </div>
+            <select class="lang-select" onchange="changeLanguage(this.value)">
+                <option value="en">EN</option>
+                <option value="rw">RW</option>
+                <option value="fr">FR</option>
+            </select>
+        </div>
+    </header>
+
+    <main id="content">
+        <!-- Removed style="display:none;" to show content by default -->
+        <!-- Home Page -->
+        <section id="home" class="page">
+            <div class="hero-section">
+                <h2 data-i18n="home_title">Welcome to Nyunganira 💚</h2>
+                <p data-i18n="home_subtitle">A safe space where your voice matters, your story is protected, and your well-being comes first.</p>
+                <p class="hero-description" data-i18n="hero_description">At Nyunganira, we believe every young person deserves access to the right information, support, and care—without fear, stigma, or judgment. Whether you are seeking knowledge about sexual and reproductive health, learning how to protect yourself from HIV, understanding menstrual health, or taking care of your mental well-being, you are in the right place.</p>
+            </div>
+            <div class="video-grid">
+                <div class="card">
+                    <iframe class="video-frame" src="https://www.youtube.com/embed/RzPcWnrdlmw" title="Emotional well being and mental health" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                    <div class="video-details">
+                        <h3 data-i18n="video_1_title">Emotional well being and mental health (English)</h3>
+                        <p class="video-description" data-i18n="video_1_desc">Video by NCERT OFFICIAL. This educational session explores the importance of mental health awareness, emotional resilience, and seeking support for psychological well-being among young students.</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <iframe class="video-frame" src="https://www.youtube.com/embed/NQcYZplTXnQ" title="Menstrual Health" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                    <div class="video-details">
+                        <h3 data-i18n="video_2_title">Mental Health Wellness Tips</h3>
+                        <p class="video-description" data-i18n="video_2_desc">Video by Psych Hub. This video shares practical tips for maintaining mental well-being and emotional health in our daily lives.</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <iframe class="video-frame" src="https://www.youtube.com/embed/4Qyp-7ZfmPM" title="HIV Prevention" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                    <div class="video-details">
+                        <h3 data-i18n="video_3_title">Teen Health: Sexual Health</h3>
+                        <p class="video-description" data-i18n="video_3_desc">Video by Penn State PRO Wellness. An informative guide for teenagers about sexual health, understanding relationships, and staying safe.</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <iframe class="video-frame" src="https://www.youtube.com/embed/edVrvp3n3yg" title="Inclusive Health" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                    <div class="video-details">
+                        <h3 data-i18n="video_4_title">HIV Treatment: Reaching Your Goal | A Positive Life</h3>
+                        <p class="video-description" data-i18n="video_4_desc">Video by A Positive Life Starts with You. Understanding HIV treatment goals and how to live a healthy, positive, and empowered life.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Opinions Page (Anonymous) -->
+        <section id="opinions" class="page" style="display:none;">
+            <h2 data-i18n="opinions_title">Community Opinions</h2>
+            <p data-i18n="opinions_subtitle">Share your challenges anonymously. No one will see your identity.</p>
+            <div class="tweet-composer">
+                <img src="profile.png" alt="" class="tweet-avatar">
+                <div class="composer-right">
+                    <textarea id="post-input" data-i18n-placeholder="post_placeholder" placeholder="Type your problem here..."></textarea>
+                    <div class="composer-actions">
+                        <button class="btn-primary" onclick="createNewPost()" data-i18n="btn_post">Post Anonymously</button>
+                    </div>
+                </div>
+            </div>
+            <div class="feed">
+                <!-- Example Tweet -->
+                <div class="tweet">
+                    <img src="profile.png" alt="" class="tweet-avatar">
+                    <div class="tweet-content">
+                        <div class="tweet-header">
+                            <span class="tweet-author" data-i18n="anon_user">Anonymous User</span>
+                            <span class="tweet-handle">@anonymous</span>
+                        </div>
+                        <p class="tweet-text">I'm struggling to find help for my mental health in a rural area. Does anyone know any mobile clinics?</p>
+                        <div class="tweet-actions">
+                            <button class="action-btn comment-btn" onclick="toggleComments(this)">
+                                💬 <span class="count">3</span>
+                            </button>
+                            <button class="action-btn like-btn" onclick="handleLike(this)">
+                                ❤️ <span class="count">12</span>
+                            </button>
+                        </div>
+                        <div class="assistant-action">
+                            <button class="action-btn assistant-btn" onclick="toggleAssistantInput(this)">
+                                ⚕️ <span data-i18n="assistant_tag">Assistant</span>
+                            </button>
+                        </div>
+                        <div class="comments-section" style="display: none;">
+                            <div class="assistant-input-area" style="display: none;">
+                                <textarea class="assistant-field" data-i18n-placeholder="assistant_sample_msg" placeholder="Write your professional assistance here..."></textarea>
+                                <button class="btn-primary" onclick="addAssistantComment(this)" data-i18n="btn_send">Reply as Assistant</button>
+                            </div>
+                            <div class="comment">
+                            <span class="assistant-tag" data-i18n="assistant_tag">Assistant Answer:</span>
+                            <p class="assistant-comment" data-i18n="assistant_sample_msg">"Hello! You can reach out to our toll-free line listed in the About section..."</p>
+                        </div>
+                        <div class="comment-input-area">
+                            <input type="text" class="comment-field" data-i18n-placeholder="comment_placeholder" placeholder="Post your reply">
+                            <button class="btn-send-comment" onclick="addComment(this)" data-i18n="btn_send">Reply</button>
+                        </div>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Notifications Page -->
+        <section id="notifications" class="page" style="display:none;">
+            <h2 data-i18n="notifications_title">Notifications</h2>
+            <div class="card" data-i18n="notif_assistant">An assistant commented on your post.</div>
+            <div class="card" data-i18n="notif_reaction">Someone reacted to your anonymous message.</div>
+        </section>
+
+        <!-- About Page -->
+        <section id="about" class="page" style="display:none;">
+            <h2 data-i18n="about_title">About Nyunganira</h2>
+            <p data-i18n="about_mission">Our mission is to provide barrier-free health information to everyone.</p>
+            <p><strong data-i18n="contact_us">Contact Us:</strong></p>
+            <p data-i18n="contact_phone">Phone: +250 791 184 249</p>
+
+            <h3 data-i18n="write_to_us_title">Write to Us</h3>
+            <p><a href="https://www.nyunganira.org" target="_blank">www.nyunganira.org</a></p>
+            <p><a href="https://support.nyunganira.org" target="_blank">support.nyunganira.org</a></p>
+
+            <h3 data-i18n="social_media_title">Social Media</h3>
+            <p>Facebook: Nyunganira Official</p>
+            <p>Instagram: @nyunganira</p>
+            <p>Twitter: @nyunganira</p>
+
+            <button class="btn-primary" onclick="handleHelpClick()" data-i18n="btn_help">Get Help</button>
+            <div id="help-examples">
+                <h4 data-i18n="help_examples_title">How can we help you?</h4>
+                <ul id="help-list">
+                    <li data-i18n="help_item_1">Technical issues with login or account creation.</li>
+                    <li data-i18n="help_item_2">Reporting inappropriate content or comments.</li>
+                    <li data-i18n="help_item_3">Difficulties playing educational videos.</li>
+                    <li data-i18n="help_item_4">Privacy or safety concerns within the community.</li>
+                    <li data-i18n="help_item_5">General questions about using the platform features.</li>
+                </ul>
+                <p><strong data-i18n="help_contact_reminder">Still need help? Email us: help@nyunganira.org</strong></p>
+            </div>
+        </section>
+
+        <!-- Profile Page -->
+        <section id="profile" class="page" style="display:none;">
+            <h2 data-i18n="profile_title">My Profile</h2>
+            <div class="profile-card">
+                <div class="avatar"><img src="profile.png" alt="User Avatar" class="avatar-img" id="profile-avatar-display"></div>
+                <p><span data-i18n="label_username">Username</span>: <strong id="profile-username-display">HealthWarrior24</strong></p>
+                <button class="btn-logout" onclick="handleLogout()" data-i18n="btn_logout">Logout</button>
+            </div>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
